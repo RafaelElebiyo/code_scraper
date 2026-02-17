@@ -1,0 +1,9 @@
+GitPython
+scrapy
+scrapy-playwright
+playwright
+python-dotenv
+tqdm
+langchain
+ollama
+deepseek-coder

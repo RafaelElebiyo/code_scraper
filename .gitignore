@@ -1,0 +1,82 @@
+# ===============================
+# Python
+# ===============================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.env/
+.envrc/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ===============================
+# Project Generated Data
+# ===============================
+
+# Temporary cloned repositories
+repos/
+
+# Generated JSON output dataset
+data/
+
+# Logs
+*.log
+
+# ===============================
+# Ollama / Model Artifacts (if any local dumps)
+# ===============================
+
+*.bin
+*.gguf
+
+# ===============================
+# IDEs
+# ===============================
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Sublime
+*.sublime-workspace
+*.sublime-project
+
+# ===============================
+# OS Files
+# ===============================
+
+# macOS
+.DS_Store
+
+# Linux
+*~
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# ===============================
+# Testing / Coverage
+# ===============================
+
+.coverage
+htmlcov/
+.pytest_cache/
+
+# ===============================
+# Misc
+# ===============================
+
+*.tmp
+*.bak
+*.swp
