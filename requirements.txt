@@ -1,9 +1,8 @@
-GitPython
-scrapy
-scrapy-playwright
-playwright
-python-dotenv
-tqdm
-langchain
-ollama
-deepseek-coder
+GitPython==3.1.46
+scrapy==2.14.1
+scrapy-playwright==0.0.46
+playwright==1.58.0
+python-dotenv==1.2.1
+tqdm==4.67.3
+langchain==1.2.10
+ollama==0.6.1

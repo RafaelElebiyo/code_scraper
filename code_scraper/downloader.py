@@ -19,8 +19,8 @@ def clone_or_update_repo():
     return repo_path
 
 
-def list_frontend_files(repo_path):
-    files = get_all_files(repo_path, settings.FRONTEND_EXTENSIONS)
+def list_files(repo_path):
+    files = get_all_files(repo_path, settings.FILE_EXTENSIONS)
     file_metadata = []
 
     for f in files:
@@ -39,8 +39,8 @@ def list_frontend_files(repo_path):
 
 if __name__ == "__main__":
     repo_path = clone_or_update_repo()
-    files_meta = list_frontend_files(repo_path)
-    print(f"Found {len(files_meta)} frontend files")
+    files_meta = list_files(repo_path)
+    print(f"Found {len(files_meta)} files")
 
     # Save file list for analyzer.py
     import json
