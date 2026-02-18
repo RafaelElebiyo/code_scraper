@@ -6,7 +6,7 @@ REPOS_PATH = "repos"
 DATA_PATH = "data"
 
 # Extensiones frontend a procesar
-FRONTEND_EXTENSIONS = [".ts", ".tsx", ".js", ".jsx", ".html", ".css", ".xml"]
+FRONTEND_EXTENSIONS = [".ts", ".tsx", ".js", ".jsx", ".html", ".css", ".xml", ".java"]
 
 # Configuración AI
 AI_MODEL = "deepseek-coder:1.3b"

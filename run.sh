@@ -1,11 +1,11 @@
 #!/bin/bash
-# Activar entorno
+# Activate virtual environment
 source venv/bin/activate
 
-echo "Clonando y listando archivos frontend..."
+echo "Cloning and listing frontend files..."
 python code_scraper_api/downloader.py
 
-echo "Analizando archivos con AI y generando JSON..."
+echo "Analyzing files with AI and generating JSON..."
 python code_scraper_api/analyzer.py
 
-echo "Proceso completado. Los JSON se encuentran en la carpeta data/"
+echo "Process completed. JSON files are available in the data/ folder"

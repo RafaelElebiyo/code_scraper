@@ -10,11 +10,11 @@ import settings
 def clone_or_update_repo():
     repo_path = Path(settings.LOCAL_REPO_PATH)
     if repo_path.exists():
-        print(f"Actualizando repo existente en {repo_path}...")
+        print(f"Updating existing repo at {repo_path}...")
         repo = git.Repo(repo_path)
         repo.remotes.origin.pull()
     else:
-        print(f"Clonando repo {settings.REPO_URL} en {repo_path}...")
+        print(f"Cloning repo {settings.REPO_URL} into {repo_path}...")
         repo = git.Repo.clone_from(settings.REPO_URL, repo_path)
     return repo_path
 
@@ -40,9 +40,9 @@ def list_frontend_files(repo_path):
 if __name__ == "__main__":
     repo_path = clone_or_update_repo()
     files_meta = list_frontend_files(repo_path)
-    print(f"Se encontraron {len(files_meta)} archivos frontend")
+    print(f"Found {len(files_meta)} frontend files")
 
-    # Guardar lista de archivos para analyzer.py
+    # Save file list for analyzer.py
     import json
 
     os.makedirs("data", exist_ok=True)

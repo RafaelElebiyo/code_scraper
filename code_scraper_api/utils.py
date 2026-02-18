@@ -6,7 +6,7 @@ import datetime
 
 def get_all_files(base_path, extensions):
     """
-    Retorna todos los archivos dentro de base_path que tengan extensiones dadas.
+    Returns all files inside base_path that match given extensions.
     """
     files = []
     for root, _, filenames in os.walk(base_path):
@@ -16,10 +16,10 @@ def get_all_files(base_path, extensions):
     return files
 
 def read_file_lines(filepath):
-    """Lee un archivo y devuelve sus líneas como lista"""
+    """Reads a file and returns its lines as a list"""
     with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
         return f.read().splitlines()
 
 def format_timestamp(ts):
-    """Convierte timestamp a ISO 8601"""
+    """Converts timestamp to ISO 8601"""
     return datetime.datetime.utcfromtimestamp(ts).strftime("%Y-%m-%dT%H:%M:%SZ")

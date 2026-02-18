@@ -1,5 +1,3 @@
-```markdown
-
 # 🧠 Code Scraper AI
 
 An enterprise-ready pipeline that **clones a repository, extracts frontend source files, analyzes them using a local AI model (Ollama), generates structured JSON files replicating the original folder structure, and removes the temporary repository automatically.**
@@ -12,29 +10,28 @@ The result is a clean, structured dataset of analyzed source code — ready for 
 
 Code Scraper AI performs the following pipeline:
 
-1. Clone a target repository
-2. Detect and list frontend source files
-3. Analyze each file using a local AI model (Ollama)
-4. Generate structured JSON files
-5. Replicate the original folder structure
-6. Delete the cloned repository
-7. Keep only the processed JSON dataset
+1. Clone a target repository  
+2. Detect and list frontend source files  
+3. Analyze each file using a local AI model (Ollama)  
+4. Generate structured JSON files  
+5. Replicate the original folder structure  
+6. Delete the cloned repository  
+7. Keep only the processed JSON dataset  
 
 The system is designed to be:
 
-- Stable
-- CPU-compatible
-- Structure-preserving
-- Fault-tolerant
-- AI-response-safe
-- Enterprise-ready
+- Stable  
+- CPU-compatible  
+- Structure-preserving  
+- Fault-tolerant  
+- AI-response-safe  
+- Enterprise-ready  
 
 ---
 
 # 🏗 Project Architecture
 
-```
-
+```bash
 code_scraper_api/
 │
 ├── analyzer.py        # AI analysis + JSON generation + cleanup
@@ -44,20 +41,17 @@ code_scraper_api/
 │
 ├── repos/             # Temporary cloned repositories
 └── data/              # Final structured JSON output
-
 ```
 
 After execution:
 
-```
-
+```bash
 data/
 └── <repository_name>/
-└── src/
-└── components/
-└── Button.jsx.json
-
-````
+    └── src/
+        └── components/
+            └── Button.jsx.json
+```
 
 The `repos/` folder is automatically deleted after processing.
 
@@ -84,7 +78,7 @@ After installing, pull the required model:
 
 ```bash
 ollama pull deepseek-coder:1.3b
-````
+```
 
 Verify it works:
 
@@ -120,9 +114,9 @@ pip install tqdm
 
 ⚠️ Do NOT install:
 
-* ollama-python
-* unofficial ollama clients
-* incompatible langchain versions
+- ollama-python  
+- unofficial ollama clients  
+- incompatible langchain versions  
 
 The project uses the official `ollama` package only.
 
@@ -133,7 +127,13 @@ python -c "import ollama; print(dir(ollama))"
 ```
 
 You should see:
-`chat`, `generate`, `Client`, etc.
+
+```
+chat
+generate
+Client
+...
+```
 
 ---
 
@@ -171,7 +171,7 @@ Run:
 
 Pipeline execution:
 
-```
+```text
 Cloning repository...
 Extracting frontend files...
 Analyzing files with AI...
@@ -201,18 +201,18 @@ Example JSON structure:
   "extension": ".tsx",
   "framework": "React",
   "dependencies": ["styled-components"],
-  "code": [...]
+  "code": []
 }
 ```
 
 This makes the dataset ideal for:
 
-* Semantic search
-* Code indexing
-* Embedding generation
-* Framework analysis
-* Dependency mapping
-* AI fine-tuning datasets
+- Semantic search  
+- Code indexing  
+- Embedding generation  
+- Framework analysis  
+- Dependency mapping  
+- AI fine-tuning datasets  
 
 ---
 
@@ -220,13 +220,13 @@ This makes the dataset ideal for:
 
 This project includes:
 
-* Robust JSON extraction from AI responses
-* Markdown-block tolerant parsing
-* CSS-safe handling (`{}` safe)
-* UTF-8 safe storage (`ensure_ascii=False`)
-* Folder structure replication
-* Automatic repository cleanup
-* Fault-tolerant AI calls (never breaks pipeline)
+- Robust JSON extraction from AI responses  
+- Markdown-block tolerant parsing  
+- CSS-safe handling (`{}` safe)  
+- UTF-8 safe storage (`ensure_ascii=False`)  
+- Folder structure replication  
+- Automatic repository cleanup  
+- Fault-tolerant AI calls (never breaks pipeline)  
 
 ---
 
@@ -253,15 +253,15 @@ The old `repos/` directory will be automatically recreated and removed after pro
 
 # 🧠 How It Works Internally
 
-### 1. Repository Cloning
+## 1. Repository Cloning
 
 The repo is cloned into `repos/`.
 
-### 2. File Listing
+## 2. File Listing
 
-Frontend files (.js, .jsx, .ts, .tsx, .css, .html, etc.) are extracted.
+Frontend files (`.js`, `.jsx`, `.ts`, `.tsx`, `.css`, `.html`, etc.) are extracted.
 
-### 3. AI Analysis
+## 3. AI Analysis
 
 Each file is sent to Ollama:
 
@@ -275,18 +275,18 @@ ollama.chat(
 
 The AI detects:
 
-* Framework (React, Angular, Vue, None)
-* External dependencies
+- Framework (React, Angular, Vue, None)  
+- External dependencies  
 
-### 4. JSON Generation
+## 4. JSON Generation
 
 Each file becomes a structured JSON document.
 
-### 5. Structure Replication
+## 5. Structure Replication
 
 The output mirrors the original folder tree.
 
-### 6. Cleanup
+## 6. Cleanup
 
 The `repos/` folder is deleted completely.
 
@@ -294,12 +294,12 @@ The `repos/` folder is deleted completely.
 
 # 🔍 Why Local AI (Ollama)?
 
-* No API keys required
-* No usage limits
-* No external costs
-* Fully offline
-* CPU compatible
-* Enterprise privacy safe
+- No API keys required  
+- No usage limits  
+- No external costs  
+- Fully offline  
+- CPU compatible  
+- Enterprise privacy safe  
 
 ---
 
@@ -307,12 +307,12 @@ The `repos/` folder is deleted completely.
 
 This project is designed to scale into:
 
-* Vector search indexing
-* Semantic code search API
-* Dependency graph generation
-* Automated documentation generation
-* Repository classification
-* AI-powered code intelligence systems
+- Vector search indexing  
+- Semantic code search API  
+- Dependency graph generation  
+- Automated documentation generation  
+- Repository classification  
+- AI-powered code intelligence systems  
 
 ---
 
@@ -320,10 +320,10 @@ This project is designed to scale into:
 
 After execution, you have:
 
-* A clean dataset
-* Structured code intelligence
-* Zero leftover temporary files
-* A reproducible AI scraping pipeline
+- A clean dataset  
+- Structured code intelligence  
+- Zero leftover temporary files  
+- A reproducible AI scraping pipeline  
 
 ---
 
@@ -343,22 +343,9 @@ It bridges repository scraping and AI-powered code analysis into a deterministic
 
 If you want to extend this into:
 
-* A REST API
-* A semantic search engine
-* A vector database pipeline
-* Or an enterprise code intelligence platform
+- A REST API  
+- A semantic search engine  
+- A vector database pipeline  
+- Or an enterprise code intelligence platform  
 
 The architecture is ready.
-
-```
-
----
-
-If you'd like, I can now generate:
-
-- A professional badge-enhanced GitHub README version
-- A system architecture diagram
-- Or a production deployment guide
-
-Just tell me the next level you want.
-```

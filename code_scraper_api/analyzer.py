@@ -14,24 +14,24 @@ MODEL_NAME = "deepseek-coder:1.3b"
 
 
 # ==========================================================
-# UTILIDADES ROBUSTAS
+# ROBUST UTILITIES
 # ==========================================================
 
 def extract_json_from_text(text: str):
     """
-    Extrae el primer bloque JSON válido dentro de un texto.
-    Tolera bloques ```json y texto extra antes/después.
+    Extracts the first valid JSON block found inside a text.
+    Tolerates ```json blocks and extra text before/after.
     """
 
     if not text:
         return None
 
     try:
-        # Eliminar bloques markdown
+        # Remove markdown blocks
         text = re.sub(r"```json", "", text, flags=re.IGNORECASE)
         text = re.sub(r"```", "", text)
 
-        # Buscar primer bloque {...}
+        # Search for first {...} block
         match = re.search(r"\{.*\}", text, re.DOTALL)
 
         if match:
@@ -50,52 +50,52 @@ def extract_json_from_text(text: str):
 
 def detect_framework_and_dependencies(code_lines, file_name):
     """
-    Detecta framework y dependencias usando Ollama.
-    Nunca rompe el pipeline.
+    Detects framework and dependencies using Ollama.
+    Never breaks the pipeline.
     """
 
     prompt_text = f"""
-Analiza el siguiente código y determina:
+Analyze the following code and determine:
 
-1. Framework usado (React, Angular, Vue, None)
-2. Librerías externas utilizadas
+1. Framework used (React, Angular, Vue, None)
+2. External libraries used
 
-Responde SOLO con JSON válido con esta estructura:
+Respond ONLY with valid JSON using this structure:
 
 {{
   "framework": "...",
   "dependencies": []
 }}
 
-Código:
+Code:
 {chr(10).join(code_lines)}
 """
 
     try:
         response = ollama.chat(
             model=MODEL_NAME,
-            format="json",  # fuerza salida JSON
+            format="json",
             messages=[{"role": "user", "content": prompt_text}]
         )
 
         content = response.get("message", {}).get("content", "").strip()
 
-        # Intentar parse directo
+        # Direct parse attempt
         try:
             return json.loads(content)
         except Exception:
             pass
 
-        # Intentar extracción robusta
+        # Robust extraction attempt
         parsed = extract_json_from_text(content)
 
         if parsed:
             return parsed
 
-        raise ValueError("No se pudo extraer JSON válido")
+        raise ValueError("Could not extract valid JSON")
 
     except Exception as e:
-        print(f"⚠ Error AI en {file_name}: {e}")
+        print(f"⚠ AI Error in {file_name}: {e}")
         return {
             "framework": None,
             "dependencies": []
@@ -103,19 +103,19 @@ Código:
 
 
 # ==========================================================
-# PROCESAMIENTO PRINCIPAL
+# MAIN PROCESSING
 # ==========================================================
 
 def process_files():
     """
-    Procesa archivos listados en data/files_list.json,
-    analiza con AI y guarda JSON replicando estructura.
+    Processes files listed in data/files_list.json,
+    analyzes them with AI, and saves JSON replicating structure.
     """
 
     files_list_path = Path("data/files_list.json")
 
     if not files_list_path.exists():
-        print("❌ No existe data/files_list.json")
+        print("❌ data/files_list.json does not exist")
         return
 
     with open(files_list_path, "r", encoding="utf-8") as f:
@@ -127,7 +127,7 @@ def process_files():
     print(f"📁 Repos root: {repos_root}")
     print(f"📦 Data root: {data_root}")
 
-    for fmeta in tqdm(files_meta, desc="Procesando archivos AI"):
+    for fmeta in tqdm(files_meta, desc="Processing AI files"):
 
         file_path = Path(fmeta["file_path"])
 
@@ -146,11 +146,11 @@ def process_files():
             fmeta["file_name"]
         )
 
-        # Construir ruta destino replicando estructura original
+        # Build destination path replicating original structure
         output_path = data_root / relative_path
         output_path = output_path.with_suffix(output_path.suffix + ".json")
 
-        # Crear carpetas necesarias
+        # Create necessary folders
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
         output_json = {
@@ -168,35 +168,35 @@ def process_files():
                     output_json,
                     jf,
                     indent=2,
-                    ensure_ascii=False  # 🔥 clave para CSS y caracteres especiales
+                    ensure_ascii=False  # 🔥 critical for CSS and special characters
                 )
         except Exception as e:
-            print(f"❌ Error guardando {output_path}: {e}")
+            print(f"❌ Error saving {output_path}: {e}")
 
-    print("✔ JSON generados respetando estructura del repositorio")
+    print("✔ JSON files generated respecting repository structure")
 
 
 # ==========================================================
-# CLEANUP ENTERPRISE
+# ENTERPRISE CLEANUP
 # ==========================================================
 
 def cleanup_repos():
     """
-    Elimina completamente la carpeta de repositorios
-    después del procesamiento.
+    Completely deletes the repositories folder
+    after processing.
     """
 
     repos_path = Path(settings.REPOS_PATH)
 
     if repos_path.exists() and repos_path.is_dir():
-        print(f"🧹 Eliminando repositorios en {repos_path}...")
+        print(f"🧹 Deleting repositories in {repos_path}...")
         try:
             shutil.rmtree(repos_path)
-            print("✔ Repositorios eliminados correctamente")
+            print("✔ Repositories deleted successfully")
         except Exception as e:
-            print(f"❌ Error eliminando repos: {e}")
+            print(f"❌ Error deleting repositories: {e}")
     else:
-        print("No hay repositorios para eliminar")
+        print("No repositories to delete")
 
 
 # ==========================================================
@@ -204,7 +204,7 @@ def cleanup_repos():
 # ==========================================================
 
 if __name__ == "__main__":
-    print("🚀 Iniciando análisis enterprise...")
+    print("🚀 Starting enterprise analysis...")
     process_files()
     cleanup_repos()
-    print("✅ Pipeline completado correctamente")
+    print("✅ Pipeline completed successfully")
