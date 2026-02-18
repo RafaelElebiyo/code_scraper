@@ -1,4 +1,4 @@
-# code_scraper_api/downloader.py
+# code_scraper/downloader.py
 
 import os
 import git

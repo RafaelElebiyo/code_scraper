@@ -1,4 +1,4 @@
-# code_scraper_api/settings.py
+# code_scraper/settings.py
 
 REPO_URL = "https://github.com/RafaelElebiyo/Xamen_Generator"
 LOCAL_REPO_PATH = "repos/Xamen_Generator"  # Carpeta donde se clona el repo

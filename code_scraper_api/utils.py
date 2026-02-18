@@ -1,4 +1,4 @@
-# code_scraper_api/utils.py
+# code_scraper/utils.py
 
 import os
 from pathlib import Path

@@ -32,7 +32,7 @@ The system is designed to be:
 # 🏗 Project Architecture
 
 ```bash
-code_scraper_api/
+code_scraper/
 │
 ├── analyzer.py        # AI analysis + JSON generation + cleanup
 ├── settings.py        # Project configuration
